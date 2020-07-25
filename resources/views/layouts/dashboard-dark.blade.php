@@ -42,7 +42,7 @@
         <a href="/projects/create" class="button h-full flex justify-center items-center" @click.prevent="$modal.show('new-project')"><i class="fas fa-plus  fa-2x  "></i></a></div>
       <div class="flex text-gray-700 text-center items-center m-2 justify-center content-center">
         <a class="button h-full flex justify-center items-center modal-open profile-open"  data-toggle="modal" data-target="profile-modal">Profile
-        <img src="{{ asset('images/avatar.jpg') }}" id="profile" class="rounded-full w-10 h-10" alt=""></a>
+        <img src="{{gravatar_url(auth()->user()->email)}}" id="profile" class="rounded-full w-10 h-10" alt=""></a>
       </div>
     </div>
   </div>
