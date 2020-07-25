@@ -14,14 +14,26 @@
                     @csrf
                 <div class="p-4 mb-4 border-4 text-left">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                      Name and Family Name
+                      First Name
                     </label>
                     <input class=" appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-none" id="username" type="text" placeholder="Your name goes here"  name="name" value="{{ old('name') }}" required autofocus>
                     @if ($errors->has('name'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('name') }}</strong>
                     </span>
-                @endif
+                    @endif
+                  </div>
+
+                  <div class="p-4 mb-4 border-4 text-left">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                      Last Name
+                    </label>
+                    <input class=" appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-none" id="username" type="text" placeholder="Your name goes here"  name="last_name" value="{{ old('last_name') }}" required autofocus>
+                    @if ($errors->has('last_name'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('last_name') }}</strong>
+                    </span>
+                    @endif
                   </div>
                   <div class="p-4 mb-4 border-4 text-left">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="username">

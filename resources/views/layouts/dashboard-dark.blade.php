@@ -32,8 +32,10 @@
   <div class="container mx-auto h-full">
     <div class="flex flex-row justify-between w-full h-full">
       <div class="text-gray-700 text-center px-4 py-2 flex items-center">
-        <img src="{{ asset('images/logo.png') }}" class="rounded-full w-10 h-10" alt=""></a>
+        <a href="{{ url('/') }}">
+                <img src="{{ asset('images/logo.png') }}" class="rounded-full w-10 h-10" alt=""></a>
 
+        </a>
         {{-- <svg class="fill-current h-6 w-6" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg> --}}
       </div>
       <div class="bg-green-main text-gray-light  shadow-xl text-center flex items-center justify-center h-full" style="width: 47px; height: 47px;">
@@ -50,7 +52,6 @@
     <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
     
     <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto  mr-4 mb-auto mt-12">
-    
     <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
         <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
         <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
@@ -60,19 +61,9 @@
 
     <!-- Add margin if you want to see some of the overlay behind the modal-->
       <div class="modal-content py-4 text-left px-6">
-        <!--Title-->
-        {{-- <div class="flex justify-between items-center pb-3">
-            <p class="text-2xl font-bold">You sure you wanna delete this task: {{ $project->title }}</p>
-            <div class="modal-close cursor-pointer z-50">
-                <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-                <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-                </svg>
-            </div>
-          </div> --}}
-
           <div class="flex flex-col">
             <div class="flex flex-row justify-between items-center mb-6">
-              <img src="{{ asset('images/avatar.jpg') }}" id="profile" class="rounded-xl w-1/4" alt=""></a>
+              <img src="{{gravatar_url(auth()->user()->email)}}" id="profile" class="rounded-xl w-1/4" alt=""></a>
               <h2 class="text-3xl font-bold mr-auto w-full ml-6">Hello <br> {{ Auth::user()->name }}</h2>
             </div>
           </div>

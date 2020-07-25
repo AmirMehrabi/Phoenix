@@ -28,7 +28,10 @@
         <nav class="bg-gray-800 p-4">
             <div class="container mx-auto">
                 <div class="flex justify-between items-center py-2">
-                    <img src="{{ asset('images/logo.png') }}" class="h-12" alt="">
+                    <a href="{{ url('/') }}">
+                        <img src="{{ asset('images/logo.png') }}" class="h-12" alt="">
+                    </a>
+                    
 
                                     <a class="navbar-brand text-xl mr-2" href="{{ url('/') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
