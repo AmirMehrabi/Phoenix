@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
+use Carbon\Carbon;
+
 
 class Project extends Model
 {
@@ -21,6 +24,14 @@ class Project extends Model
     public function owner()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function statuses() {
+        return $this->hasMany(Status::class);
+    }
+
+    public function done_on_days($date) {
+        return $this->statuses()->where('submitted_at','=', $date);
     }
 
     public function tasks()
@@ -61,18 +72,22 @@ class Project extends Model
         'completed' => 'boolean'
     ];
 
-    protected static $recordableEvents = ['created', 'deleted'];
+    // protected static $recordableEvents = ['created'];
 
 
     public function complete()
     {
-        $this->update(['completed' => true]);
-        $this->recordActivity('completed_task');
+        // $this->update(['completed' => true]);
+        $status = Status::create(['user_id' => Auth::user()->id, 'project_id' => $this->id, 'submitted_at' => Carbon::now()->toDateString(), 'completed' => 1]);
+
+        // $this->recordActivity('completed_task');
     }
 
     public function incomplete()
     {
-        $this->update(['completed' => false]);
-        $this->recordActivity('incompleted_task');
+        $status = Status::where('user_id', Auth::user()->id)->where('project_id', $this->id)->where('submitted_at', Carbon::now()->toDateString())->delete();
+
+        // $this->update(['completed' => false]);
+        // $this->recordActivity('incompleted_task');
     }
 }

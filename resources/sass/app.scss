@@ -2,7 +2,6 @@
 // @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import url('https://fonts.googleapis.com/css?family=Bebas+Neue|Ubuntu&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap');
-
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css');
 @font-face {
     font-family: IRANSans;
@@ -64,7 +63,7 @@ body {
     font-family: 'Open Sans', 'IRANSans' !IMPORTANT;
 }
 
-input:checked + svg {
+input:checked+svg {
     display: block;
 }
 
@@ -72,7 +71,6 @@ input:checked + svg {
     font-size: 2.55rem;
     letter-spacing: 0.1rem;
 }
-
 
 @tailwind base;
 @tailwind components;
@@ -100,18 +98,95 @@ input:checked + svg {
 // .table-heading-top {
 //     @apply .bg-green-200 .rounded-lg;
 // }
-
-
 .habit-box {
     height: 190px;
     width: 120px !IMPORTANT;
 }
+
 .habit-box-critical {
     height: 190px;
-    width: 190px!IMPORTANT;;
+    width: 190px!IMPORTANT;
+    ;
 }
-
 
 .add-modal {
     background-image: linear-gradient(to left bottom, #f5af19, #f69400, #f67800, #f55600, #f12711);
+}
+
+.bg-physical {
+    background: rgb(52, 232, 157);
+    background: linear-gradient(135deg, rgba(52, 232, 157, 1) 0%, rgba(15, 52, 67, 1) 100%);
+}
+
+.bg-emotional {
+    background: rgb(255, 0, 153);
+    background: linear-gradient(135deg, rgba(255, 0, 153, 1) 0%, rgba(73, 50, 64, 1) 100%);
+}
+
+.bg-spiritual {
+    background: rgb(38, 208, 195);
+    background: linear-gradient(135deg, rgba(38, 208, 195, 1) 0%, rgba(26, 41, 128, 1) 100%);
+}
+
+.bg-mental {
+    background: rgb(245, 175, 25);
+    background: linear-gradient(135deg, rgba(245, 175, 25, 1) 0%, rgba(241, 39, 17, 1) 100%);
+}
+
+.bg-work {
+    background: rgb(71, 118, 230);
+    background: linear-gradient(135deg, rgba(71, 118, 230, 1) 0%, rgba(142, 84, 233, 1) 100%);
+}
+
+.bg-family {
+    background: rgb(255, 81, 47);
+    background: linear-gradient(135deg, rgba(255, 81, 47, 1) 0%, rgba(221, 36, 118, 1) 100%);
+}
+
+.bg-friends {
+    background: rgb(234, 175, 200);
+    background: linear-gradient(135deg, rgba(234, 175, 200, 1) 0%, rgba(101, 78, 163, 1) 100%);
+}
+
+.border-physical {
+    border-color: rgb(52, 232, 157);
+}
+
+.border-emotional {
+    border-color: rgb(255, 0, 153);
+}
+
+.border-spiritual {
+    border-color: rgb(38, 208, 195);
+}
+
+.border-mental {
+    border-color: rgb(245, 175, 25);
+}
+
+.border-work {
+    border-color: rgb(71, 118, 230);
+}
+
+.border-family {
+    border-color: rgb(255, 81, 47);
+}
+
+.border-friends {
+    border-color: rgb(234, 175, 200);
+}
+
+.whole-line {
+    text-align: justify;
+}
+
+.whole-line:after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+}
+
+path {
+    fill: white;
+    stroke: #fff !IMPORTANT;
 }

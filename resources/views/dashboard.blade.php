@@ -430,6 +430,7 @@
 
 
 @section('footer-assets')
+
 <script>
     today = new Date();
     currentMonth = today.getMonth() - 1;

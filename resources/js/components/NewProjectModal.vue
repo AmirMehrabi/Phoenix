@@ -1,12 +1,14 @@
 <template>
   <modal
+  :top="40"
+  :right="400"
   :width="550"
   :height="550"
     name="new-project"
-    classes="p-10 add-modal text-gray-bg rounded-lg shadow mr-auto"
+    classes="p-10 add-modal text-white rounded-lg shadow mr-auto"
     height="auto"
   >
-    <h1 class="text-center text-5xl my-4 font-bold text-gray-bg tracking-wider font-extrabold">Add New habit</h1>
+    <h1 class="text-center text-5xl my-4 font-bold text-white tracking-wider font-extrabold">Add New habit</h1>
 
     <form @submit.prevent="submit">
       <div class="flex">
@@ -16,7 +18,7 @@
               type="text"
               name="title"
               id="title"
-              class="border-b-4 border-gray-bg p-2 text-sm bg-transparent text-gray-bg block w-full rounded text-lg focus:outline-none focus:shadow-lg"
+              class="border-b-4 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg"
               :class="form.errors.title ? 'border-red-400' : 'border-gray-300'"
               placeholder="My new habit"
               v-model="form.title"
@@ -28,16 +30,28 @@
             ></span> 
           </div>
           <div class="mb-4">
-            <select name="color" id="color" class="border-b-4 border-gray-bg p-2 text-sm bg-transparent text-gray-bg block w-full rounded text-lg focus:outline-none focus:shadow-lg" v-model="form.color" :class="form.errors.color ? 'border-red-400' : 'border-gray-300'">
+            <select name="color" id="color" class="border-b-4 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg" v-model="form.critical" :class="form.errors.critical ? 'border-red-400' : 'border-gray-300'">
 
-              <option value="red">Red</option>
-              <option value="blue">Blue</option>
-              <option value="orange">Orange</option>
-              <option value="yellow">Yellow</option>
-              <option value="green">Green</option>
-              <option value="teal">Teal</option>
-              <option value="purple">Purple</option>
-              <option value="pink">Pink</option>
+              <option value="true">Critical</option>
+              <option value="false">Non-critical</option>
+            </select>
+
+            <span
+              class="text-xs italic text-red-600"
+              v-if="form.errors.title"
+              v-text="form.errors.title[0]"
+            ></span>
+          </div>
+          <div class="mb-4">
+            <select name="color" id="color" class="border-b-4 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg" v-model="form.color" :class="form.errors.color ? 'border-red-400' : 'border-gray-300'">
+
+              <option value="spiritual">Spiritual</option>
+              <option value="physical">physical</option>
+              <option value="emotional">emotional</option>
+              <option value="mental">mental</option>
+              <option value="work">work</option>
+              <option value="family">family</option>
+              <option value="friends">friends</option>
             </select>
 
             <span
@@ -50,7 +64,7 @@
             <textarea
               name="description"
               id="description"
-              class="border-b-4 border-gray-bg p-2 text-sm bg-transparent text-gray-bg block w-full rounded text-lg focus:outline-none focus:shadow-lg"
+              class="border-b-4 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg"
               :class="form.errors.description ? 'border-red-400' : 'border-gray-300'"
               placeholder="Why do I want to do this?"
               rows="3"
@@ -86,6 +100,7 @@ export default {
       form: new RevalForm({
         title: "",
         color: "",
+        critical: "",
         description: "",
         tasks: [{ body: "" }]
       })

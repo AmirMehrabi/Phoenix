@@ -5,3 +5,8 @@ body {
 .rtl {
     direction: rtl;
 }
+
+path {
+    fill: white;
+    stroke: #fff !IMPORTANT;
+}

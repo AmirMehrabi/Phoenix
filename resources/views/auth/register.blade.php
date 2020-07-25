@@ -1,8 +1,78 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mx-auto">
     <div class="row justify-content-center">
+
+
+        <section class="flex mb-4 items-center text-center">
+            <div class="w-full mx-auto">
+            <h2 class="text-3xl text-white font-light mb-6">Start making good habits</h2>
+        
+            <div class="w-1/3 mx-auto m-4 p-4 bg-white">
+                <form method="POST" action="{{ route('register') }}" class="">
+                    @csrf
+                <div class="p-4 mb-4 border-4 text-left">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                      Name and Family Name
+                    </label>
+                    <input class=" appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-none" id="username" type="text" placeholder="Your name goes here"  name="name" value="{{ old('name') }}" required autofocus>
+                    @if ($errors->has('name'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('name') }}</strong>
+                    </span>
+                @endif
+                  </div>
+                  <div class="p-4 mb-4 border-4 text-left">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                      E-Mail
+                    </label>
+                    <input class=" appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-none" id="email" type="email" placeholder="Your E-mail goes here"  name="email" value="{{ old('email') }}" required>
+                    @if ($errors->has('email'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
+                </div>
+                  <div class="p-4 mb-4 border-4 text-left">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                      Password
+                    </label>
+                    <input class=" appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-none" id="password" type="password" placeholder="Your password" name="password" required>
+        
+                    <input class=" appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-none" id="confirm-password" type="password" placeholder="Your password confirmation" name="password_confirmation" required>
+                    @if ($errors->has('password'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                @endif
+                @if ($errors->has('password_confirmation'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('password_confirmation') }}</strong>
+                </span>
+            @endif
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <button  type="submit" class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                      Register
+                    </button>
+                    <a class="inline-block align-baseline font-bold text-sm text-teal-500 hover:text-teal-800" href="#">
+                      Forgot your password?
+                    </a>
+                  </div>
+                </form>
+                {{-- <p class="text-center text-gray-500 text-xs">
+                  &copy;2020 Acme Corp. All rights reserved.
+                </p> --}}
+              </div>
+                {{-- <div class="my-4 p-4">
+                    <a href="#" class="p-3 bg-teal-600 text-white border-3 border-transparent hover:border-teal-600 hover:text-teal-600 hover:bg-white">هرروز انجامش بده</a>
+                </div> --}}
+            </div>
+        </section>
+
+
+{{-- 
         <div class="w-2/5 mx-auto">
             <div class="card bg-gray-300 p-3">
                 <div class="card-header h1 pb-4">
@@ -73,7 +143,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 @endsection

@@ -13,7 +13,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
 
 Route::get('/test', function () {
@@ -29,8 +29,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('projects', 'ProjectsController');
 
 
-    Route::get('/dashboard', 'ProjectsController@darkIndex');
-    Route::get('/dashboard-dark', 'ProjectsController@darkIndex');
+    // Route::get('/dashboard', 'ProjectsController@darkIndex');
+    Route::get('/dashboard/{date?}', 'ProjectsController@darkIndex');
+    Route::get('/{date?}', 'ProjectsController@darkIndex');
 
     Route::post('projects/{project}/tasks', 'ProjectTasksController@store');
     Route::patch('projects/{project}/tasks/{task}', 'ProjectTasksController@update');

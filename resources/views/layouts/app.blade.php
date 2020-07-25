@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -22,20 +23,22 @@
 
     @yield('header-assets')
 </head>
-<body class="bg-gray-200">
+<body class="bg-gray-800">
     <div id="app">
-        <nav class="bg-white">
+        <nav class="bg-gray-800 p-4">
             <div class="container mx-auto">
-                <div class="flex justify-between items-center py-2 rtl">
-                                    <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <div class="flex justify-between items-center py-2">
+                    <img src="{{ asset('images/logo.png') }}" class="h-12" alt="">
+
+                                    <a class="navbar-brand text-xl mr-2" href="{{ url('/') }}">
+                    {{-- {{ config('app.name', 'Laravel') }} --}}
                 </a>
 
           
-                <div class="navbar-nav ml-auto my-2 flex items-center">
+                <div class="navbar-nav mr-auto my-2 flex items-center">
                     <!-- Authentication Links -->
                     @auth
-                    <a class="button mx-4" href="{{ url('/dashboard-dark') }}">{{ __('خانه') }}</a>
+                    <a class="button mx-4" href="{{ url('/dashboard') }}">{{ __('Dashboard') }}</a>
 
                     @endauth
 
@@ -44,13 +47,13 @@
 
 
                     <!-- Right Side Of Navbar -->
-                    <div class="navbar-nav mr-auto my-2 flex items-center">
+                    <div class="navbar-nav ml-auto my-2 flex items-center">
                         <!-- Authentication Links -->
                         @guest
-                            <a class="button mx-4" href="{{ route('login') }}">{{ __('ورود') }}</a>
+                            <a class="text-white button p-3 border-transparent border-b-3 hover:text-teal-600 hover:border-teal-600" href="{{ route('login') }}">{{ __('Sign in') }}</a>
 
                             @if (Route::has('register'))
-                                <a class="button is-outlined" href="{{ route('register') }}">{{ __('ثبت نام') }}</a>
+                                <a class="text-orange-500 button is-outlined p-3 border-transparent border-b-3 hover:text-teal-600 hover:border-teal-600" href="{{ route('register') }}">{{ __('Sign up') }}</a>
                             @endif
                         @else
                         <a href="" class="flex items-center text-default no-underline text-sm" >
@@ -93,7 +96,7 @@
             </div>
         </nav>
 
-        <main class="py-4 container mx-auto">
+        <main class=" mx-auto">
             @yield('content')
         </main>
     </div>
