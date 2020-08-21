@@ -12,8 +12,7 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -22,10 +21,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('css/ltr.css') }}" rel="stylesheet"> --}}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
 
     @yield('header-assets')
 </head>
-<body class="bg-gray-bg">
+<body class="bg-gray-bg overflow-x-hidden">
     <div id="app">
         
 <nav class="flex items-center  flex-wrap bg-black-transparent fixed w-full mb-10" style="height: 47px;">
@@ -38,8 +38,12 @@
         </a>
         {{-- <svg class="fill-current h-6 w-6" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg> --}}
       </div>
+      <a class="text-white button h-full flex justify-center items-center modal-open profile-open"  data-toggle="modal" data-target="add-habit-modal">Add Habit
+      </a>
       <div class="bg-green-main text-gray-light  shadow-xl text-center flex items-center justify-center h-full" style="width: 47px; height: 47px;">
-        <a href="/projects/create" class="button h-full flex justify-center items-center" @click.prevent="$modal.show('new-project')"><i class="fas fa-plus  fa-2x  "></i></a></div>
+
+
+        {{-- <a href="/projects/create" class="button h-full flex justify-center items-center" @click.prevent="$modal.show('new-project')"><i class="fas fa-plus  fa-2x  "></i></a></div> --}}
       <div class="flex text-gray-700 text-center items-center m-2 justify-center content-center">
         <a class="button h-full flex justify-center items-center modal-open profile-open"  data-toggle="modal" data-target="profile-modal">Profile
         <img src="{{gravatar_url(auth()->user()->email)}}" id="profile" class="rounded-full w-10 h-10" alt=""></a>
@@ -69,7 +73,7 @@
           </div>
 
           <div class="flex flex-row justify-between">
-            <div class="habit-card habit-box text-white flex flex-col justify-center w-30 mh-30 flex-none px-2 items-center content-between rounded-2xl my-2 text-center bg-spiritual border-spiritual">
+            <div class="habit-card habit-box text-white flex flex-col justify-center  mh-30 flex-none px-2 items-center content-between rounded-2xl my-2 text-center bg-spiritual border-spiritual">
               <div>
                 <h2 class="text-3xl font-extrabold">N/A</h2>
               </div>
@@ -96,9 +100,109 @@
               </div>
             </div>
           </div>
+          
+          @foreach ($monthly_percent as $key => $day)
+
+          <div class="flex flex-row w-full">
+            <p>{{ $key+1 }}</p>
+            <div class="text-xs bg-gray-700 leading-none text-center  shadow-2xl justify-end text-white flex items-center rounded-lg"
+                style="width: {{ $daily_percent }}%">{{ $daily_percent }}% &nbsp;</div>
+        </div>              
+          @endforeach
 
         </div>
     </div>
+</div>
+
+
+
+{{-- Add habit modal --}}
+<div class="modal opacity-0 pointer-events-none fixed w-full mx-auto flex items-center justify-center" id="add-habit-modal">
+  <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+   
+  <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto mb-auto mt-12">
+  <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+      <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+      <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+      </svg>
+      <span class="text-sm">(Esc)</span>
+  </div>
+
+  <!-- Add margin if you want to see some of the overlay behind the modal-->
+    <div class="modal-content py-4 text-left px-6">
+
+      <h1 class="text-center text-5xl my-4 font-bold text-gray-800 tracking-wider font-extrabold">Add New habit</h1>
+
+
+      <form autocomplete="off">
+        <div class="flex">
+          <div class="flex-1 ml-4">
+            <div class="mb-4">
+              <input 
+                type="text"
+                name="title"
+                id="title"
+                class="border-b-4  focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg"
+                placeholder="My new habit"
+              />
+              <span
+                class="text-xs italic text-red-600"
+              ></span> 
+            </div>
+            <div class="mb-4">
+              <select name="color" id="color" class="border-b-4  focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg">
+  
+                <option value="true">Critical</option>
+                <option value="false">Non-critical</option>
+              </select>
+  
+              <span
+                class="text-xs italic text-red-600"
+              ></span>
+            </div>
+            <div class="mb-4">
+              <select name="color" id="colorpicker" autocomplete="off" class="border-b-4  focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg" >
+  
+                <option value="spiritual">Spiritual</option>
+                <option value="physical">physical</option>
+                <option value="emotional">emotional</option>
+                <option value="mental">mental</option>
+                <option value="work">work</option>
+                <option value="family">family</option>
+                <option value="friends">friends</option>
+              </select>
+  
+              <span
+                class="text-xs italic text-red-600"
+              ></span>
+            </div>
+            <div class="mb-4">
+              <textarea
+                name="description"
+                id="description"
+                class="border-b-4  focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg"
+                
+                placeholder="Why do I want to do this?"
+                rows="3"
+              ></textarea>
+              <span
+                class="text-xs italic text-red-600"
+              ></span>
+            </div>
+          </div>
+        </div>
+        <footer class="flex justify-around">
+          <button type="submit" class="button rounded-lg bg-gray-bg p-4 p-4 text-orange-500 text-2xl w-2/5 hover:shadow-xl font-extrabold hover:bg-gray-light">Add</button>
+  
+          <button
+            type="button"
+            class="button rounded-lg border-3 border-gray-bg bg-transparent p-4 text-2xl w-2/5 hover:shadow-xl font-extrabold hover:bg-gray-light"
+          >Cancel</button>
+        </footer>
+      </form>
+
+      </div>
+  </div>
 </div>
   {{-- <div class="flex items-center flex-shrink-0 text-white mr-6">
     <svg class="fill-current h-8 w-8 ml-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
@@ -133,7 +237,10 @@
         </main>
     </div>
 </body>
-  {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
+  <script src="{{ asset('js/app.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
+  <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+
 @yield('footer-assets')
 
 

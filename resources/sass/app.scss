@@ -118,9 +118,17 @@ input:checked+svg {
     background: linear-gradient(135deg, rgba(52, 232, 157, 1) 0%, rgba(15, 52, 67, 1) 100%);
 }
 
+.physical-color {
+    background: #218e70;
+}
+
 .bg-emotional {
     background: rgb(255, 0, 153);
     background: linear-gradient(135deg, rgba(255, 0, 153, 1) 0%, rgba(73, 50, 64, 1) 100%);
+}
+
+.emotional-color {
+    background: #b21573;
 }
 
 .bg-spiritual {
@@ -128,9 +136,17 @@ input:checked+svg {
     background: linear-gradient(135deg, rgba(38, 208, 195, 1) 0%, rgba(26, 41, 128, 1) 100%);
 }
 
+.spiritual-color {
+    background: #2082a4;
+}
+
 .bg-mental {
     background: rgb(245, 175, 25);
     background: linear-gradient(135deg, rgba(245, 175, 25, 1) 0%, rgba(241, 39, 17, 1) 100%);
+}
+
+.mental-color {
+    background: #f37415;
 }
 
 .bg-work {
@@ -138,14 +154,26 @@ input:checked+svg {
     background: linear-gradient(135deg, rgba(71, 118, 230, 1) 0%, rgba(142, 84, 233, 1) 100%);
 }
 
+.work-color {
+    background: #6469e8;
+}
+
 .bg-family {
     background: rgb(255, 81, 47);
     background: linear-gradient(135deg, rgba(255, 81, 47, 1) 0%, rgba(221, 36, 118, 1) 100%);
 }
 
+.family-color {
+    background: #ef3c51;
+}
+
 .bg-friends {
     background: rgb(234, 175, 200);
     background: linear-gradient(135deg, rgba(234, 175, 200, 1) 0%, rgba(101, 78, 163, 1) 100%);
+}
+
+.friends-color {
+    background: #b186b9;
 }
 
 .border-physical {

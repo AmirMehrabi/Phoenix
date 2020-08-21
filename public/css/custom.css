@@ -10,3 +10,53 @@ path {
     fill: white;
     stroke: #fff !IMPORTANT;
 }
+
+.square {
+    width: 25%;
+    height: 0;
+    padding-bottom: 25%;
+}
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+[x-cloak] {
+    display: none;
+}
+
+.line {
+    background: repeating-linear-gradient( to bottom, #eee, #eee 1px, #fff 1px, #fff 8%);
+}
+
+.tick {
+    background: repeating-linear-gradient( to right, #eee, #eee 1px, #fff 1px, #fff 5%);
+}
+
+ion-icon {
+    font-size: 64px;
+}

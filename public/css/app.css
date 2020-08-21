@@ -19623,9 +19623,17 @@ video {
   background: linear-gradient(135deg, #34e89d 0%, #0f3443 100%);
 }
 
+.physical-color {
+  background: #218e70;
+}
+
 .bg-emotional {
   background: #ff0099;
   background: linear-gradient(135deg, #ff0099 0%, #493240 100%);
+}
+
+.emotional-color {
+  background: #b21573;
 }
 
 .bg-spiritual {
@@ -19633,9 +19641,17 @@ video {
   background: linear-gradient(135deg, #26d0c3 0%, #1a2980 100%);
 }
 
+.spiritual-color {
+  background: #2082a4;
+}
+
 .bg-mental {
   background: #f5af19;
   background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+}
+
+.mental-color {
+  background: #f37415;
 }
 
 .bg-work {
@@ -19643,14 +19659,26 @@ video {
   background: linear-gradient(135deg, #4776e6 0%, #8e54e9 100%);
 }
 
+.work-color {
+  background: #6469e8;
+}
+
 .bg-family {
   background: #ff512f;
   background: linear-gradient(135deg, #ff512f 0%, #dd2476 100%);
 }
 
+.family-color {
+  background: #ef3c51;
+}
+
 .bg-friends {
   background: #eaafc8;
   background: linear-gradient(135deg, #eaafc8 0%, #654ea3 100%);
+}
+
+.friends-color {
+  background: #b186b9;
 }
 
 .border-physical {

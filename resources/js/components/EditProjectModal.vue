@@ -41,7 +41,7 @@
             ></span>
           </div>
           <div class="mb-4">
-            <select name="color" id="color" class="border-b-4 border-gray-bg p-2 text-sm bg-transparent text-gray-bg block w-full rounded text-lg focus:outline-none focus:shadow-lg" v-model="form.color" :class="form.errors.color ? 'border-red-400' : 'border-gray-300'">
+            <select name="color" id="colorpicker" class="border-b-4 border-gray-bg p-2 text-sm bg-transparent text-gray-bg block w-full rounded text-lg focus:outline-none focus:shadow-lg" v-model="form.color" :class="form.errors.color ? 'border-red-400' : 'border-gray-300'">
 
               <option value="spiritual">Spiritual</option>
               <option value="physical">physical</option>

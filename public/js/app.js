@@ -38465,7 +38465,7 @@ var render = function() {
                     class: _vm.form.errors.color
                       ? "border-red-400"
                       : "border-gray-300",
-                    attrs: { name: "color", id: "color" },
+                    attrs: { name: "color", id: "colorpicker" },
                     on: {
                       change: function($event) {
                         var $$selectedVal = Array.prototype.filter
@@ -38716,7 +38716,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "border-b-4 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg",
+                    "border-b-4  focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg",
                   class: _vm.form.errors.title
                     ? "border-red-400"
                     : "border-gray-300",
@@ -38760,7 +38760,7 @@ var render = function() {
                       }
                     ],
                     staticClass:
-                      "border-b-4 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg",
+                      "border-b-4  focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg",
                     class: _vm.form.errors.critical
                       ? "border-red-400"
                       : "border-gray-300",
@@ -38819,11 +38819,11 @@ var render = function() {
                       }
                     ],
                     staticClass:
-                      "border-b-4 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg",
+                      "border-b-4  focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg",
                     class: _vm.form.errors.color
                       ? "border-red-400"
                       : "border-gray-300",
-                    attrs: { name: "color", id: "color" },
+                    attrs: { name: "color", id: "colorpicker" },
                     on: {
                       change: function($event) {
                         var $$selectedVal = Array.prototype.filter
@@ -38896,7 +38896,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "border-b-4 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg",
+                    "border-b-4  focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg",
                   class: _vm.form.errors.description
                     ? "border-red-400"
                     : "border-gray-300",

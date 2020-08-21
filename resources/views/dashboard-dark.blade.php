@@ -29,6 +29,7 @@
 
         </div>
     </div>
+
     @if ($daily_percent > 0)
     <div class="mt-8 mb-16">
         <div class=" w-full bg-gray-bg ">
@@ -45,8 +46,8 @@
 
 <div class=" bg-gray-dark rounded-lg p-3 my-8" style="">
     
-<div class="flex flex-wrap align-items-center justify-left">
-    @forelse ($projects->sortBy('completed') as $key => $project)
+<div class="flex overflow-y-hidden align-items-center justify-left">
+    @forelse ($projects->sortBy('submitted_at') as $key => $project)
 {{-- Modal --}}
 
   
@@ -185,7 +186,7 @@
 {{-- End of modal --}}
     @if ($project->completed == 0)
     {{-- Habit Card --}}
-    <div class="habit-card habit-box w-30 mh-30 flex-none px-2 items-center content-between">
+    <div class="mb-4 habit-card  {{ $project->critical == 1 ? 'habit-box-critical' : 'habit-box' }} mh-30 flex-none px-2 items-center content-between">
         
         <div class="min-h-full flex flex-wrap content-around bg-gray-dark rounded-2xl mh-20 text-gray-light text-center px-2  border-3 border-{{ $project->color ?? 'blue'}}">
           {{-- <div class="flex flex-row justify-between w-full">
@@ -209,9 +210,11 @@
 
                     @if ($now == Carbon\Carbon::now()->toDateString())
                     <label class="flex justify-center items-center">
-                        <div class="rounded  w-10 h-10 flex flex-shrink-0 justify-center items-center  rounded-full shadow-md hover:shadow-xl">
+                        <div class="rounded  w-10 h-10 flex flex-shrink-0 justify-center items-center  rounded-full">
                           <input type="checkbox" class="opacity-0 absolute" onchange="this.form.submit()" name="completed" {{$project->completed ? 'checked' : ''}}>
-                          <img src="{{ asset('images/circle.png') }}" alt="">
+                          {{-- <img src="{{ asset('images/circle.png') }}" alt=""> --}}
+                          <ion-icon name="checkmark-circle-outline"></ion-icon>
+                          
                         </div>
                       </label>
                     @endif 
@@ -225,8 +228,8 @@
       
       @elseif($project->completed == 1)
       
-      <div class="habit-card habit-box w-full sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/12  flex-none px-2 items-center content-between">
-        <div class=" min-h-full flex flex-wrap content-around bg-{{ $project->color ?? 'blue'}} rounded-2xl mh-20 text-gray-light text-center p-2  border-0 border-{{ $project->color ?? 'blue'}}">
+      <div class="habit-card {{ $project->critical == 1 ? 'habit-box-critical' : 'habit-box' }} w-full sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/12  flex-none px-2 mb-2 items-center content-between">
+        <div class=" min-h-full flex flex-wrap content-around bg-{{ $project->color ?? 'blue'}} rounded-2xl mh-20 text-gray-light text-center p-2 mb-4 border-0 border-{{ $project->color ?? 'blue'}}">
 
           {{-- <div class="flex flex-row justify-between w-full">
             <a class="button h-full flex justify-center items-center modal-open text-xs"  data-toggle="modal" data-target="modal-{{ $key }}">edit</a>
@@ -246,9 +249,11 @@
                     <label class="flex justify-center items-center">
 
                         @if ($now == Carbon\Carbon::now()->toDateString())
-                        <div class="rounded  w-10 h-10 flex flex-shrink-0 justify-center items-center  rounded-full shadow-md hover:shadow-xl">
+                        <div class="rounded  w-10 h-10 flex flex-shrink-0 justify-center items-center  rounded-full">
                             <input type="checkbox" class="opacity-0 absolute" onchange="this.form.submit()" name="completed" {{$project->completed ? 'checked' : ''}}>
-                          <img src="{{ asset('images/circle.png') }}" alt="">
+                          {{-- <img src="{{ asset('images/circle.png') }}" alt=""> --}}
+                          <ion-icon name="close-circle-outline"></ion-icon>
+
                             {{-- <svg class="fill-current hidden w-4 h-4 text-green-main pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg> --}}
                           </div>
                         @endif
@@ -333,7 +338,7 @@
                         <th class="h-2 md:h-4 lg:h-6 xl:h-8 w-2 md:w-4 lg:w-6 xl:w-8 text-right text-gray-light truncate font-xs sm:font-sm md:font-normal lg:pr-4 text-justify">{{mb_strimwidth($project->title, 0, 15, "...") }}   </th>
                         @foreach ($period as $day)
                             @if ( count($project->done_on_days($day)->get()) )
-                            <td class="h-2 md:h-4 lg:h-6 xl:h-8 w-2 md:w-4 lg:w-6 xl:w-8 bg-{{$project->color}}"></td>
+                            <td class="h-2 md:h-4 lg:h-6 xl:h-8 w-2 md:w-4 lg:w-6 xl:w-8 {{$project->color}}-color"></td>
                                 @else
                                 <td class="h-2 md:h-4 lg:h-6 xl:h-8 w-2 md:w-4 lg:w-6 xl:w-8 bg-gray-dark"></td>
                             @endif
@@ -356,15 +361,191 @@
 
 
 
+<section class="container  bg-gray-500 rounded-xl shadow-xl mt-5  p-5">
+  <div class="flex flex-col">
+    <div class="text-gray-700 text-center mb-5">
+  <div class="flex justify-between items-center">
+    <div class=" text-center">
+        <input type="text" onkeyup="filterHabits()" class="bg-gray-200 text-gray-800 appearance-none border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" placeholder="Search in your habits" id="myInput">
+    </div>
+    <div class="flex text-center items-center">
+              <div class="text-white p-1 rounded-lg flex items-center justify-center">Sort by:</div> 
+  
+        <div class="bg-gray-200 mx-1 p-1 rounded-lg flex items-center justify-center">Time</div> 
+        <div class="bg-gray-200 mx-1 p-1 rounded-lg flex items-center justify-center">Strike</div>
+  
+    </div>
+  </div>
+    </div>
+    <ul class="text-gray-700 text-center flex mt-3 flex-wrap " id="myUL">
+
+      @foreach ($projects as $key => $project)
+
+      <li id="myLI" class=" li bg-{{ $project->color }}  mx-1 text-white p-1 rounded-lg h-24 w-24 flex items-center justify-center mb-2" >
+        <div class="text-center flex flex-row w-full content-between justify-center items-center">
+          <a href="#" class="modal-open " data-toggle="modal" data-target="edit-habit-{{ $key }}">
+  
+          {{ $project->title }} 
+        </a>
+
+        </div>    
+      </li>   
+      {{-- Start of card --}}
+      <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center" id="edit-habit-{{ $key }}">
+        <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+        
+        <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+        
+        <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+            <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+            <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+            </svg>
+            <span class="text-sm">(Esc)</span>
+        </div>
+    
+        <!-- Add margin if you want to see some of the overlay behind the modal-->
+        <div class="modal-content py-4 text-left px-6">
+
+          <h1 class="text-center text-5xl my-4 font-bold text-gray-800 tracking-wider font-extrabold">Edit habit</h1>
+    
+    
+          <form autocomplete="off">
+            <div class="flex">
+              <div class="flex-1 ml-4">
+                <div class="mb-4">
+                  <input 
+                    type="text"
+                    name="title"
+                    id="title"
+                    class="border-b-4 text-gray-700 focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg"
+                    placeholder="My new habit" value="{{ $project->title }}"
+                  />
+                  <span
+                    class="text-xs italic text-red-600"
+                  ></span> 
+                </div>
+                <div class="mb-4">
+                  <select name="color" id="color" class="border-b-4 text-gray-700 focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg">
+      
+                    <option value="true">Critical</option>
+                    <option value="false">Non-critical</option>
+                  </select>
+      
+                  <span
+                    class="text-xs italic text-red-600"
+                  ></span>
+                </div>
+                <div class="mb-4">
+                  <select name="color" id="colorpicker" autocomplete="off" class="border-b-4 text-gray-700 focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg" >
+      
+                    <option value="spiritual">Spiritual</option>
+                    <option value="physical">physical</option>
+                    <option value="emotional">emotional</option>
+                    <option value="mental">mental</option>
+                    <option value="work">work</option>
+                    <option value="family">family</option>
+                    <option value="friends">friends</option>
+                  </select>
+      
+                  <span
+                    class="text-xs italic text-red-600"
+                  ></span>
+                </div>
+                <div class="mb-4">
+                  <textarea
+                    name="description"
+                    id="description"
+                    class="border-b-4 text-gray-700 focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg"
+                    
+                    placeholder="Why do I want to do this?"
+                    rows="3"
+                    value="{{ $project->description }}"
+                  ></textarea>
+                  <span
+                    class="text-xs italic text-red-600"
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <footer class="flex justify-around">
+              <button type="submit" class="button rounded-lg bg-gray-bg px-4 py-2 text-orange-500 text-xl hover:shadow-xl font-extrabold hover:bg-gray-light">Edit</button>
+              <button type="submit" class="button rounded-lg bg-red-700 px-4 py-2 text-white text-xl hover:shadow-xl font-extrabold hover:bg-gray-light">Delete</button>
+              <button
+                type="button"
+                class="button modal-close rounded-lg border-3 border-gray-bg bg-transparent px-4 py-2 text-xl hover:shadow-xl font-extrabold hover:bg-gray-light"
+              >Cancel</button>
+            </footer>
+          </form>
+    
+          </div>
+        </div>
+    </div>
+      {{-- End of card --}}
+      @endforeach
+
+    </ul>
+    {{-- <div class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2">3</div> --}}
+  </div>
+  </section>
+  
+  
+
+
+
+
+
 @endsection
 
 
 @section('footer-assets')
     <script>
+  function filterHabits() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("div")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        } 
+    }
+}
+
     $(document).ready(function () {
 
+      $("#colorpicker").spectrum({
+    color: "rgb(244, 204, 204)",    
+    showPaletteOnly: true,
+    change: function(color) {
+        printColor(color);
+    },
+    palette: [
+        ["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)",
+        "rgb(204, 204, 204)", "rgb(217, 217, 217)","rgb(255, 255, 255)"],
+        ["rgb(152, 0, 0)", "rgb(255, 0, 0)", "rgb(255, 153, 0)", "rgb(255, 255, 0)", "rgb(0, 255, 0)",
+        "rgb(0, 255, 255)", "rgb(74, 134, 232)", "rgb(0, 0, 255)", "rgb(153, 0, 255)", "rgb(255, 0, 255)"], 
+        ["rgb(230, 184, 175)", "rgb(244, 204, 204)", "rgb(252, 229, 205)", "rgb(255, 242, 204)", "rgb(217, 234, 211)", 
+        "rgb(208, 224, 227)", "rgb(201, 218, 248)", "rgb(207, 226, 243)", "rgb(217, 210, 233)", "rgb(234, 209, 220)", 
+        "rgb(221, 126, 107)", "rgb(234, 153, 153)", "rgb(249, 203, 156)", "rgb(255, 229, 153)", "rgb(182, 215, 168)", 
+        "rgb(162, 196, 201)", "rgb(164, 194, 244)", "rgb(159, 197, 232)", "rgb(180, 167, 214)", "rgb(213, 166, 189)", 
+        "rgb(204, 65, 37)", "rgb(224, 102, 102)", "rgb(246, 178, 107)", "rgb(255, 217, 102)", "rgb(147, 196, 125)", 
+        "rgb(118, 165, 175)", "rgb(109, 158, 235)", "rgb(111, 168, 220)", "rgb(142, 124, 195)", "rgb(194, 123, 160)",
+        "rgb(166, 28, 0)", "rgb(204, 0, 0)", "rgb(230, 145, 56)", "rgb(241, 194, 50)", "rgb(106, 168, 79)",
+        "rgb(69, 129, 142)", "rgb(60, 120, 216)", "rgb(61, 133, 198)", "rgb(103, 78, 167)", "rgb(166, 77, 121)",
+        "rgb(91, 15, 0)", "rgb(102, 0, 0)", "rgb(120, 63, 4)", "rgb(127, 96, 0)", "rgb(39, 78, 19)", 
+        "rgb(12, 52, 61)", "rgb(28, 69, 135)", "rgb(7, 55, 99)", "rgb(32, 18, 77)", "rgb(76, 17, 48)"]
+    ]
+});
+      $(document).on('click', '#profile', function(event) { 
 
-$(document).on('click', '#profile', function(event) { 
+
+
+
   console.log('test')
     event.preventDefault(); 
     $(".profile-open").trigger('click'); 

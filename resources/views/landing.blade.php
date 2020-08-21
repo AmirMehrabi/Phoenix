@@ -1,7 +1,14 @@
 @extends('layouts.app')
 
-
+@section('header-assets')
+<style>
+  nav.bg-gray-800.p-4 {
+    display: none;
+  }
+</style>
+@endsection
 @section('content')
+
 
 {{-- <section class="flex mb-4 items-center text-center py-8">
     <div class="w-full mx-auto">
@@ -12,9 +19,42 @@
     </div>
 </section> --}}
 
+<section class="text-center py-8 bg-gray-800">
+  <div class="container mx-auto px-40 flex flex-row items-center justify-between">
+    <div>
+      <img src="{{ asset('images/logo500.png') }}" alt="">
+    </div>
+    <div class="flex flex-col items-center">
+      <h1 class="text-4xl text-white font-black  text-justify">Reborn like</h1>
+      <h2 class="text-4xl text-orange-500 font-black text-justify">Phoenix</h2>
+      <div class="flex flex-row">
+        @auth
+        <div class="m-1">
+          <a href="{{ url('dashboard') }}" class=" px-3 py-2 font-bold rounded bg-white text-orange-600">Dashboard</a>
+
+        </div>
+        <div class="m-1">
+          <a href="{{ route('logout') }}" class=" px-3 py-2 font-bold rounded bg-white text-orange-600">Log out</a>
+
+        </div>
+        @else
+          <div class="m-1">
+            <a href="#" class=" px-3 py-2 font-bold rounded bg-white text-orange-600">Sign in</a>
+  
+          </div>
+          <div class="m-1">
+            <a href="#" class=" px-3 py-2 font-bold rounded bg-orange-600 text-white">Sign up</a>
+  
+          </div>
+        @endauth
+
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="text-center py-8 bg-gray-800">
-  <div class="container mx-auto">
+  <div class="container mx-auto px-40">
 
   <div class="flex flex-wrap mb-4 items-center">
 
@@ -29,12 +69,12 @@
       </div>
     </div>
       
-      <div class="mx-auto m-4 p-4 w-1/2 mt-16 lg:mt-0">
+      <div class="mx-auto m-4 p-4 w-1/2 mt-40">
         <div class="bg-family rounded-xl px-2 py-4">
           <div class="bg-gray-800 rounded-full w-12 h-12 flex items-center justify-center mx-auto">
             <h1 class="text-center text-white font-extrabold text-3xl">1</h1>
           </div>
-          <h4 class="my-3 text-3xl font-bold">Clue</h4>
+          <h4 class="my-3 text-4xl font-bold">Clue</h4>
           <div class="font-light">
             <h5 class="">Make it obvious</h5>
             <hr class="bg-gray-800 border-gray-800">
@@ -44,11 +84,11 @@
       </div>
 
       <div class="mx-auto m-4 p-4 w-1/2">
-        <div class="bg-spiritual rounded-xl px-2 py-4">
+        <div class="bg-spiritual rounded-xl px-2 py-4 -mt-40">
           <div class="bg-gray-800 rounded-full w-12 h-12 flex items-center justify-center mx-auto">
             <h1 class="text-center text-white font-extrabold text-3xl">2</h1>
           </div>
-          <h4 class="my-3 text-3xl font-bold">Crave</h4>
+          <h4 class="my-3 text-4xl font-bold">Crave</h4>
           <div class="font-light">
             <h5 class="">Make it attractive</h5>
             <hr class="bg-gray-800 border-gray-800">
@@ -57,12 +97,12 @@
         </div>
       </div>
 
-      <div class="mx-auto m-4 p-4 w-1/2 mt-16 lg:mt-0">
+      <div class="mx-auto m-4 p-4 w-1/2">
         <div class="bg-physical rounded-xl px-2 py-4">
           <div class="bg-gray-800 rounded-full w-12 h-12 flex items-center justify-center mx-auto">
             <h1 class="text-center text-white font-extrabold text-3xl">3</h1>
           </div>
-          <h4 class="my-3 text-3xl font-bold">Response</h4>
+          <h4 class="my-3 text-4xl font-bold">Response</h4>
           <div class="font-light">
             <h5 class="">Make it easy</h5>
             <hr class="bg-gray-800 border-gray-800">
@@ -71,12 +111,12 @@
         </div>
       </div>
 
-      <div class="mx-auto m-4 p-4 w-1/2">
+      <div class="mx-auto m-4 p-4 w-1/2 -mt-20">
         <div class="bg-friends rounded-xl px-2 py-4">
           <div class="bg-gray-800 rounded-full w-12 h-12 flex items-center justify-center mx-auto">
             <h1 class="text-center text-white font-extrabold text-3xl">4</h1>
           </div>
-          <h4 class="my-3 text-3xl font-bold">Reward</h4>
+          <h4 class="my-3 text-4xl font-bold">Reward</h4>
           <div class="font-light">
             <h5 class="">Make it satisfying</h5>
             <hr class="bg-gray-800 border-gray-800">
@@ -85,7 +125,7 @@
         </div>
       </div>
 
-      <div class="mx-auto m-4 p-4 w-1/2 text-gray-light mt-16 lg:mt-0">
+      <div class="mx-auto m-4 p-4 w-1/2 text-gray-light">
         <div class="border-2 border-family rounded-xl px-2 py-4">
           <ion-icon name="repeat-outline" class="text-6xl text-white"></ion-icon>
           <h4 class="text-3xl font-bold">Repeat the cycle</h4>
