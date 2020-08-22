@@ -25,7 +25,7 @@
       <img src="{{ asset('images/logo500.png') }}" alt="">
     </div>
     <div class="flex flex-col items-center">
-      <h1 class="text-4xl text-white font-black  text-justify">Reborn like</h1>
+      <h1 class="text-4xl text-white font-black  text-justify">Reborn, like a</h1>
       <h2 class="text-4xl text-orange-500 font-black text-justify">Phoenix</h2>
       <div class="flex flex-row">
         @auth
@@ -92,7 +92,7 @@
           <div class="font-light">
             <h5 class="">Make it attractive</h5>
             <hr class="bg-gray-800 border-gray-800">
-            <h6>Add your habits to Phoenix</h6>
+            <h6>We help you stay motivated by visualizing your progress</h6>
           </div>
         </div>
       </div>
@@ -106,7 +106,7 @@
           <div class="font-light">
             <h5 class="">Make it easy</h5>
             <hr class="bg-gray-800 border-gray-800">
-            <h6>Add your habits to Phoenix</h6>
+            <h6>Simple taps, every day</h6>
           </div>
         </div>
       </div>
@@ -120,7 +120,7 @@
           <div class="font-light">
             <h5 class="">Make it satisfying</h5>
             <hr class="bg-gray-800 border-gray-800">
-            <h6>Add your habits to Phoenix</h6>
+            <h6>Enjoy achieving your goals</h6>
           </div>
         </div>
       </div>
