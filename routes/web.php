@@ -23,7 +23,7 @@ Route::get('/test', function () {
 
 Auth::routes();
 
-
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('projects', 'ProjectsController');

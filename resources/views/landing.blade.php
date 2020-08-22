@@ -39,11 +39,11 @@
         </div>
         @else
           <div class="m-1">
-            <a href="#" class=" px-3 py-2 font-bold rounded bg-white text-orange-600">Sign in</a>
+            <a href="{{ url('login') }}" class=" px-3 py-2 font-bold rounded bg-white text-orange-600">Sign in</a>
   
           </div>
           <div class="m-1">
-            <a href="#" class=" px-3 py-2 font-bold rounded bg-orange-600 text-white">Sign up</a>
+            <a href="{{ url('register') }}" class=" px-3 py-2 font-bold rounded bg-orange-600 text-white">Sign up</a>
   
           </div>
         @endauth

@@ -12,6 +12,7 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,6 +21,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/jquery.modal.css') }}" />
+
     {{-- <link href="{{ asset('css/ltr.css') }}" rel="stylesheet"> --}}
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
 
@@ -38,30 +41,27 @@
         </a>
         {{-- <svg class="fill-current h-6 w-6" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg> --}}
       </div>
-      <a class="text-white button h-full flex justify-center items-center modal-open profile-open"  data-toggle="modal" data-target="add-habit-modal">Add Habit
-      </a>
+      <a class="text-white button h-full flex justify-center items-center modal-open profile-open"  rel="modal:open" href="#add-habit-modal"  data-toggle="modal" data-target="add-habit-modal">
+      
       <div class="bg-green-main text-gray-light  shadow-xl text-center flex items-center justify-center h-full" style="width: 47px; height: 47px;">
-
-
-        {{-- <a href="/projects/create" class="button h-full flex justify-center items-center" @click.prevent="$modal.show('new-project')"><i class="fas fa-plus  fa-2x  "></i></a></div> --}}
-      <div class="flex text-gray-700 text-center items-center m-2 justify-center content-center">
-        <a class="button h-full flex justify-center items-center modal-open profile-open"  data-toggle="modal" data-target="profile-modal">Profile
-        <img src="{{gravatar_url(auth()->user()->email)}}" id="profile" class="rounded-full w-10 h-10" alt=""></a>
+        <i class="fas fa-plus fa-2x   "></i>
       </div>
+    </a>
+        {{-- <a href="/projects/create" class="button h-full flex justify-center items-center" @click.prevent="$modal.show('new-project')"><i class="fas fa-plus  fa-2x  "></i></a></div> --}}
+        <a class="button h-full flex justify-center items-center modal-open profile-open" href="#profile-modal"  rel="modal:open">
+        <div class="flex text-gray-700 text-center items-center m-2 justify-center content-center">
+        
+        <img src="{{gravatar_url(auth()->user()->email)}}" id="profile" class="rounded-full w-10 h-10" alt="">
+      </div>
+    </a>
     </div>
   </div>
 
    
-  <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center" id="profile-modal">
-    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+  <div class="modal mr-0 ml-auto" id="profile-modal">
+    {{-- <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div> --}}
     
-    <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto  mr-4 mb-auto mt-12">
-    <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
-        <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-        <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-        </svg>
-        <span class="text-sm">(Esc)</span>
-    </div>
+    <div class="">
 
     <!-- Add margin if you want to see some of the overlay behind the modal-->
       <div class="modal-content py-4 text-left px-6">
@@ -101,14 +101,6 @@
             </div>
           </div>
           
-          @foreach ($monthly_percent as $key => $day)
-
-          <div class="flex flex-row w-full">
-            <p>{{ $key+1 }}</p>
-            <div class="text-xs bg-gray-700 leading-none text-center  shadow-2xl justify-end text-white flex items-center rounded-lg"
-                style="width: {{ $daily_percent }}%">{{ $daily_percent }}% &nbsp;</div>
-        </div>              
-          @endforeach
 
         </div>
     </div>
@@ -117,16 +109,10 @@
 
 
 {{-- Add habit modal --}}
-<div class="modal opacity-0 pointer-events-none fixed w-full mx-auto flex items-center justify-center" id="add-habit-modal">
-  <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+<div class="modal " id="add-habit-modal">
    
-  <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto mb-auto mt-12">
-  <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
-      <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-      <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-      </svg>
-      <span class="text-sm">(Esc)</span>
-  </div>
+  <div class="">
+
 
   <!-- Add margin if you want to see some of the overlay behind the modal-->
     <div class="modal-content py-4 text-left px-6">
@@ -134,7 +120,8 @@
       <h1 class="text-center text-5xl my-4 font-bold text-gray-800 tracking-wider font-extrabold">Add New habit</h1>
 
 
-      <form autocomplete="off">
+      <form action=" {!! route('projects.store') !!}" method="POST" autocomplete="off">
+        @csrf
         <div class="flex">
           <div class="flex-1 ml-4">
             <div class="mb-4">
@@ -142,7 +129,7 @@
                 type="text"
                 name="title"
                 id="title"
-                class="border-b-4  focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg"
+                class="border-b-4  focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent  block w-full rounded text-lg focus:outline-none focus:shadow-lg"
                 placeholder="My new habit"
               />
               <span
@@ -150,7 +137,7 @@
               ></span> 
             </div>
             <div class="mb-4">
-              <select name="color" id="color" class="border-b-4  focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg">
+              <select name="color" id="color" class="border-b-4  focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent  block w-full rounded text-lg focus:outline-none focus:shadow-lg">
   
                 <option value="true">Critical</option>
                 <option value="false">Non-critical</option>
@@ -161,15 +148,15 @@
               ></span>
             </div>
             <div class="mb-4">
-              <select name="color" id="colorpicker" autocomplete="off" class="border-b-4  focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg" >
+              <select name="color" id="color" autocomplete="off" class="border-b-4  focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent block w-full rounded text-lg focus:outline-none focus:shadow-lg" >
   
-                <option value="spiritual">Spiritual</option>
-                <option value="physical">physical</option>
-                <option value="emotional">emotional</option>
-                <option value="mental">mental</option>
-                <option value="work">work</option>
-                <option value="family">family</option>
-                <option value="friends">friends</option>
+                <option value="spiritual">Spiritual <div class="w-4 h-4 bg-spiritual"></div></option>
+                <option value="physical">Physical</option>
+                <option value="emotional">Emotional</option>
+                <option value="mental">Mental</option>
+                <option value="work">Work</option>
+                {{-- <option value="family">family</option>
+                <option value="friends">friends</option> --}}
               </select>
   
               <span

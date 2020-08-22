@@ -17,7 +17,7 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('owner_id');
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('color')->default('blue');
             $table->text('notes')->nullable();
             $table->boolean('completed')->default(false);

@@ -23,7 +23,7 @@
         <div class="text-gray-light py-2 text-left">
             <div class="flex flex-col text-left items-start">
                 <div class="bg-green-main text-gray-light shadow-xl text-center flex items-center px-4 h-20 w-20 rounded-lg">
-                    <a href="/projects/create" class="button w-full h-full flex items-center justify-center" @click.prevent="$modal.show('new-project')"><i class="fas fa-plus fa-3x   "></i></a></div>  
+                    <a class="button w-full h-full flex items-center justify-center" href="#add-habit-modal" rel="modal:open"><i class="fas fa-plus fa-3x   "></i></a></div>  
 </div>
 
 
@@ -360,7 +360,6 @@
 
 
 
-
 <section class="container  bg-gray-500 rounded-xl shadow-xl mt-5  p-5">
   <div class="flex flex-col">
     <div class="text-gray-700 text-center mb-5">
@@ -368,13 +367,13 @@
     <div class=" text-center">
         <input type="text" onkeyup="filterHabits()" class="bg-gray-200 text-gray-800 appearance-none border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600" placeholder="Search in your habits" id="myInput">
     </div>
-    <div class="flex text-center items-center">
+    {{-- <div class="flex text-center items-center">
               <div class="text-white p-1 rounded-lg flex items-center justify-center">Sort by:</div> 
   
         <div class="bg-gray-200 mx-1 p-1 rounded-lg flex items-center justify-center">Time</div> 
         <div class="bg-gray-200 mx-1 p-1 rounded-lg flex items-center justify-center">Strike</div>
   
-    </div>
+    </div> --}}
   </div>
     </div>
     <ul class="text-gray-700 text-center flex mt-3 flex-wrap " id="myUL">
@@ -382,34 +381,36 @@
       @foreach ($projects as $key => $project)
 
       <li id="myLI" class=" li bg-{{ $project->color }}  mx-1 text-white p-1 rounded-lg h-24 w-24 flex items-center justify-center mb-2" >
-        <div class="text-center flex flex-row w-full content-between justify-center items-center">
-          <a href="#" class="modal-open " data-toggle="modal" data-target="edit-habit-{{ $key }}">
-  
-          {{ $project->title }} 
-        </a>
+        <a href="#edit-habit-{{ $key }}" data-toggle="modal"  rel="modal:open" >
 
-        </div>    
+        <div class="text-center flex flex-row block w-full content-between justify-center items-center">
+          {{ $project->title }} 
+
+        </div>   
+      </a>
+ 
       </li>   
       {{-- Start of card --}}
-      <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center" id="edit-habit-{{ $key }}">
-        <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+      <div class="modal" id="edit-habit-{{ $key }}">
+        {{-- <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div> --}}
         
-        <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+        <div class="">
         
-        <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+        {{-- <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
             <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
             <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
             </svg>
             <span class="text-sm">(Esc)</span>
-        </div>
+        </div> --}}
     
         <!-- Add margin if you want to see some of the overlay behind the modal-->
-        <div class="modal-content py-4 text-left px-6">
+        <div class=" py-4 text-left px-6">
 
           <h1 class="text-center text-5xl my-4 font-bold text-gray-800 tracking-wider font-extrabold">Edit habit</h1>
     
-    
-          <form autocomplete="off">
+          <form action="/projects/{{ $project->id }}" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="flex">
               <div class="flex-1 ml-4">
                 <div class="mb-4">
@@ -438,7 +439,7 @@
                 <div class="mb-4">
                   <select name="color" id="colorpicker" autocomplete="off" class="border-b-4 text-gray-700 focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg" >
       
-                    <option value="spiritual">Spiritual</option>
+                    <option class="bg-spiritual" value="spiritual">Spiritual</option>
                     <option value="physical">physical</option>
                     <option value="emotional">emotional</option>
                     <option value="mental">mental</option>
@@ -469,13 +470,19 @@
             </div>
             <footer class="flex justify-around">
               <button type="submit" class="button rounded-lg bg-gray-bg px-4 py-2 text-orange-500 text-xl hover:shadow-xl font-extrabold hover:bg-gray-light">Edit</button>
-              <button type="submit" class="button rounded-lg bg-red-700 px-4 py-2 text-white text-xl hover:shadow-xl font-extrabold hover:bg-gray-light">Delete</button>
+            </form>
+              <form method="POST" action="/projects/{{$project->id}}">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+        
+                <button type="submit" class="button rounded-lg bg-red-700 px-4 py-2 text-white text-xl hover:shadow-xl font-extrabold hover:bg-gray-light">Delete</button>
+
+            </form>
               <button
                 type="button"
                 class="button modal-close rounded-lg border-3 border-gray-bg bg-transparent px-4 py-2 text-xl hover:shadow-xl font-extrabold hover:bg-gray-light"
               >Cancel</button>
             </footer>
-          </form>
     
           </div>
         </div>
@@ -550,48 +557,7 @@
     event.preventDefault(); 
     $(".profile-open").trigger('click'); 
 });
-        var openmodal = document.querySelectorAll('.modal-open')
-     let selectedModalTargetId = ''
-     for (var i = 0; i < openmodal.length; i++) {
-       openmodal[i].addEventListener('click', function(event){
-         selectedModalTargetId = event.target.attributes.getNamedItem('data-target').value
-         console.log(selectedModalTargetId)
-         event.preventDefault()
-         toggleModal()
-       })
-     }
-  
-    const overlay = document.querySelector('.modal-overlay')
-    overlay.addEventListener('click', toggleModal)
-  
-    var closemodal = document.querySelectorAll('.modal-close')
-    for (var i = 0; i < closemodal.length; i++) {
-      closemodal[i].addEventListener('click', toggleModal)
-    }
-  
-    document.onkeydown = function(evt) {
-      evt = evt || window.event
-      var isEscape = false
-      if ("key" in evt) {
-        isEscape = (evt.key === "Escape" || evt.key === "Esc")
-      } else {
-        isEscape = (evt.keyCode === 27)
-      }
-      if (isEscape && document.body.classList.contains('modal-active')) {
-        toggleModal()
-      }
-    }
-  
-    function toggleModal () {
-      if(!selectedModalTargetId) {
-        return
-      }
-      const body = document.querySelector('body')
-      const modal = document.getElementById(selectedModalTargetId)
-      modal.classList.toggle('opacity-0')
-      modal.classList.toggle('pointer-events-none')
-      body.classList.toggle('modal-active')
-    }
+
 
 
 
