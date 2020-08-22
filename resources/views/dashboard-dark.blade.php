@@ -461,7 +461,7 @@
                     placeholder="Why do I want to do this?"
                     rows="3"
                     value="{{ $project->description }}"
-                  ></textarea>
+                  >{{ $project->description }}</textarea>
                   <span
                     class="text-xs italic text-red-600"
                   ></span>
@@ -478,10 +478,10 @@
                 <button type="submit" class="button rounded-lg bg-red-700 px-4 py-2 text-white text-xl hover:shadow-xl font-extrabold hover:bg-gray-light">Delete</button>
 
             </form>
-              <button
-                type="button"
+              <a
+              rel="modal:close"
                 class="button modal-close rounded-lg border-3 border-gray-bg bg-transparent px-4 py-2 text-xl hover:shadow-xl font-extrabold hover:bg-gray-light"
-              >Cancel</button>
+              >Cancel</a>
             </footer>
     
           </div>

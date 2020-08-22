@@ -57,26 +57,14 @@ class ProjectsController extends Controller
         $period = CarbonPeriod::create($firstDay, $lastDay);
 
         
-        foreach($projects as $project) {
 
-        foreach($period as $dayKey => $day) {
-                foreach($project->statuses()->get() as $key => $status) {
-                    if($day->toDateString() == $status->submitted_at) {
-                        $monthly_report = 1;
-                    }
-
-                }
-                $monthly_percent[$dayKey] = round(@(count($monthly_report[$key]) / $projects->count()) * 100);
-
-            }
-        }
         // dd($monthly_percent);
         // dd($monthly_report);
 
         // dd($done_tasks);
 
         // var_dump($period);
-        return view('dashboard-dark', compact('projects', 'monthly_percent', 'daily_percent', 'period', 'now'));
+        return view('dashboard-dark', compact('projects', 'daily_percent', 'period', 'now'));
     }
     public function create()
     {
@@ -140,7 +128,7 @@ class ProjectsController extends Controller
     {
         return request()->validate([
             'title' => 'sometimes|required',
-            // 'description' => 'sometimes|required',
+            'description' => 'sometimes',
             'color' => 'nullable',
             'notes' => 'nullable'
         ]);

@@ -181,10 +181,10 @@
         <footer class="flex justify-around">
           <button type="submit" class="button rounded-lg bg-gray-bg p-4 p-4 text-orange-500 text-2xl w-2/5 hover:shadow-xl font-extrabold hover:bg-gray-light">Add</button>
   
-          <button
-            type="button"
-            class="button rounded-lg border-3 border-gray-bg bg-transparent p-4 text-2xl w-2/5 hover:shadow-xl font-extrabold hover:bg-gray-light"
-          >Cancel</button>
+          <a
+          rel="modal:close"
+            class="button rounded-lg border-3 border-gray-bg bg-transparent p-4 text-center text-2xl w-2/5 hover:shadow-xl font-extrabold hover:bg-gray-light"
+          >Cancel</a>
         </footer>
       </form>
 
