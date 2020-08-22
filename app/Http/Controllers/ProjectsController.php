@@ -140,7 +140,7 @@ class ProjectsController extends Controller
     {
         return request()->validate([
             'title' => 'sometimes|required',
-            'description' => 'sometimes|required',
+            // 'description' => 'sometimes|required',
             'color' => 'nullable',
             'notes' => 'nullable'
         ]);
