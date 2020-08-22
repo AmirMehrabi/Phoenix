@@ -137,10 +137,10 @@
               ></span> 
             </div>
             <div class="mb-4">
-              <select name="color" id="color" class="border-b-4  focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent  block w-full rounded text-lg focus:outline-none focus:shadow-lg">
+              <select name="critical" id="color" class="border-b-4  focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent  block w-full rounded text-lg focus:outline-none focus:shadow-lg">
   
-                <option value="true">Critical</option>
-                <option value="false">Non-critical</option>
+                <option value="1">Critical</option>
+                <option value="0">Non-critical</option>
               </select>
   
               <span

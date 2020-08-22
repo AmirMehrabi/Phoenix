@@ -119,20 +119,15 @@
                     placeholder="My new habit"
                     
                   />
-                  <span
-                    class="text-xs italic text-red-600"
-                  ></span> 
                 </div>
                 <div class="mb-4">
-                  <select name="color" value="{{ $project->critical }}" id="color" class="border-b-4 border-gray-bg p-2 text-sm bg-transparent text-gray-bg block w-full rounded text-lg focus:outline-none focus:shadow-lg"  >
+                  <select name="critical" value="{{ $project->critical }}" id="color" class="border-b-4 border-gray-bg p-2 text-sm bg-transparent text-gray-bg block w-full rounded text-lg focus:outline-none focus:shadow-lg"  >
       
                     <option value="true">Critical</option>
                     <option value="false">Non-critical</option>
                   </select>
       
-                  <span
-                    class="text-xs italic text-red-600"
-                  ></span>
+
                 </div>
                 <div class="mb-4">
                   <select name="color" id="color" class="border-b-4 border-gray-bg p-2 text-sm bg-transparent text-gray-bg block w-full rounded text-lg focus:outline-none focus:shadow-lg">
@@ -146,9 +141,7 @@
                     <option value="friends">friends</option>
                   </select>
       
-                  <span
-                    class="text-xs italic text-red-600"
-                  ></span>
+
                 </div>
                 <div class="mb-4">
                   <textarea
@@ -161,9 +154,7 @@
                     rows="3"
                     
                   >{{ $project->description }}</textarea>
-                  <span
-                    class="text-xs italic text-red-600"
-                  ></span>
+
                 </div>
               </div>
             </div>
@@ -421,20 +412,14 @@
                     class="border-b-4 text-gray-700 focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg"
                     placeholder="My new habit" value="{{ $project->title }}"
                   />
-                  <span
-                    class="text-xs italic text-red-600"
-                  ></span> 
                 </div>
                 <div class="mb-4">
-                  <select name="color" id="color" class="border-b-4 text-gray-700 focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg">
-      
-                    <option value="true">Critical</option>
-                    <option value="false">Non-critical</option>
+                  <select name="critical" id="critical" class="border-b-4 text-gray-700 focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg">
+                    <option value="1" {{ $project->critical == 1 ? "selected" : "" }}>Critical</option>
+                    <option value="0" {{ $project->critical == 0 ? "selected" : "" }}>Non-critical</option>
                   </select>
       
-                  <span
-                    class="text-xs italic text-red-600"
-                  ></span>
+
                 </div>
                 <div class="mb-4">
                   <select name="color" id="colorpicker" autocomplete="off" class="border-b-4 text-gray-700 focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg" >
@@ -448,9 +433,7 @@
                     <option value="friends">friends</option>
                   </select>
       
-                  <span
-                    class="text-xs italic text-red-600"
-                  ></span>
+
                 </div>
                 <div class="mb-4">
                   <textarea
@@ -462,9 +445,7 @@
                     rows="3"
                     value="{{ $project->description }}"
                   >{{ $project->description }}</textarea>
-                  <span
-                    class="text-xs italic text-red-600"
-                  ></span>
+
                 </div>
               </div>
             </div>

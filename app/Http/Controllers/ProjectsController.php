@@ -129,6 +129,7 @@ class ProjectsController extends Controller
         return request()->validate([
             'title' => 'sometimes|required',
             'description' => 'sometimes',
+            'critical' => 'sometimes',
             'color' => 'nullable',
             'notes' => 'nullable'
         ]);
