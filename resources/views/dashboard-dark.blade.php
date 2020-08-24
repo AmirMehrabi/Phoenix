@@ -117,8 +117,11 @@
                     id="title"
                     class="border-b-4 border-gray-bg p-2 text-sm bg-transparent text-gray-bg block w-full rounded text-lg focus:outline-none focus:shadow-lg"
                     placeholder="My new habit"
+                    id="autocomplete"
                     
                   />
+
+                  
                 </div>
                 <div class="mb-4">
                   <select name="critical" value="{{ $project->critical }}" id="color" class="border-b-4 border-gray-bg p-2 text-sm bg-transparent text-gray-bg block w-full rounded text-lg focus:outline-none focus:shadow-lg"  >
@@ -137,8 +140,8 @@
                     <option value="emotional">emotional</option>
                     <option value="mental">mental</option>
                     <option value="work">work</option>
-                    <option value="family">family</option>
-                    <option value="friends">friends</option>
+                    {{-- <option value="family">family</option>
+                    <option value="friends">friends</option> --}}
                   </select>
       
 
@@ -283,7 +286,7 @@
 <div class="flex-center position-ref py-5">
 
     <div class="content w-full">
-
+      
         <div class="w-full py-3 pb-6">
             <div class="">
                 <table class="table w-full flex justify-between">
@@ -408,7 +411,7 @@
                   <input 
                     type="text"
                     name="title"
-                    id="title"
+                    id="autocomplete"
                     class="border-b-4 text-gray-700 focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg"
                     placeholder="My new habit" value="{{ $project->title }}"
                   />
@@ -429,8 +432,8 @@
                     <option value="emotional">emotional</option>
                     <option value="mental">mental</option>
                     <option value="work">work</option>
-                    <option value="family">family</option>
-                    <option value="friends">friends</option>
+                    {{-- <option value="family">family</option>
+                    <option value="friends">friends</option> --}}
                   </select>
       
 

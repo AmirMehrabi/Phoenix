@@ -13,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -128,7 +129,7 @@
               <input 
                 type="text"
                 name="title"
-                id="title"
+                id="autocomplete"
                 class="border-b-4  focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent  block w-full rounded text-lg focus:outline-none focus:shadow-lg"
                 placeholder="My new habit"
               />
@@ -227,7 +228,9 @@
   <script src="{{ asset('js/app.js') }}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
   <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
-
+  <script type="text/javascript" src="{{ asset('js/jquery.mockjax.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/jquery.autocomplete.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/demo.js') }}"></script>
 @yield('footer-assets')
 
 
