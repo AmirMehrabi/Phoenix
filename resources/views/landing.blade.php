@@ -20,11 +20,11 @@
 </section> --}}
 
 <section class="text-center py-8 bg-gray-800">
-  <div class="container mx-auto px-40 flex flex-row items-center justify-between">
-    <div>
+  <div class="container mx-auto lg:px-20 xl:px-40 flex flex-col xl:flex-row items-center justify-between">
+    <div class="">
       <img src="{{ asset('images/logo500.png') }}" alt="">
     </div>
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center mx-auto">
       <h1 class="text-4xl text-white font-black  text-justify">Reborn, like a</h1>
       <h2 class="text-4xl text-orange-500 font-black text-justify">Phoenix</h2>
       <div class="flex flex-row">
@@ -54,9 +54,91 @@
 </section>
 
 <section class="text-center py-8 bg-gray-800">
-  <div class="container mx-auto px-40">
+  <div class="container mx-auto  xl:px-40">
+{{-- Mobile  --}}
 
-  <div class="flex flex-wrap mb-4 items-center">
+<div class="flex-wrap mb-4 items-center flex xl:hidden">
+
+  <div class="mx-auto m-4 p-4 w-full lg:w-1/2">
+    <div class="border-3 text-white border-family rounded-xl px-2 py-4">
+      <h2 class=""><span class="text-xs">Small changes make</span><br><span class="text-6xl text-justify">BIG</span><br><span class="text-lg">differences</span></h2>
+
+      <div class="mt-3 font-light">
+
+        <h6>Phoenix helps you take control of your life by changing your habits.</h6>
+      </div>
+    </div>
+  </div>
+    
+    <div class="mx-auto m-4 p-4 w-full lg:w-1/2 ">
+      <div class="bg-family rounded-xl px-2 py-4">
+        <div class="bg-gray-800 rounded-full w-12 h-12 flex items-center justify-center mx-auto">
+          <h1 class="text-center text-white font-extrabold text-3xl">1</h1>
+        </div>
+        <h4 class="my-3 text-4xl font-bold">Clue</h4>
+        <div class="font-light">
+          <h5 class="">Make it obvious</h5>
+          <hr class="bg-gray-800 border-gray-800">
+          <h6>Add your habits to Phoenix</h6>
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-auto m-4 p-4 w-full lg:w-1/2">
+      <div class="bg-spiritual rounded-xl px-2 py-4 ">
+        <div class="bg-gray-800 rounded-full w-12 h-12 flex items-center justify-center mx-auto">
+          <h1 class="text-center text-white font-extrabold text-3xl">2</h1>
+        </div>
+        <h4 class="my-3 text-4xl font-bold">Crave</h4>
+        <div class="font-light">
+          <h5 class="">Make it attractive</h5>
+          <hr class="bg-gray-800 border-gray-800">
+          <h6>We help you stay motivated by visualizing your progress</h6>
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-auto m-4 p-4 w-full lg:w-1/2">
+      <div class="bg-physical rounded-xl px-2 py-4">
+        <div class="bg-gray-800 rounded-full w-12 h-12 flex items-center justify-center mx-auto">
+          <h1 class="text-center text-white font-extrabold text-3xl">3</h1>
+        </div>
+        <h4 class="my-3 text-4xl font-bold">Response</h4>
+        <div class="font-light">
+          <h5 class="">Make it easy</h5>
+          <hr class="bg-gray-800 border-gray-800">
+          <h6>Simple taps, every day</h6>
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-auto m-4 p-4 w-full lg:w-1/2 ">
+      <div class="bg-friends rounded-xl px-2 py-4">
+        <div class="bg-gray-800 rounded-full w-12 h-12 flex items-center justify-center mx-auto">
+          <h1 class="text-center text-white font-extrabold text-3xl">4</h1>
+        </div>
+        <h4 class="my-3 text-4xl font-bold">Reward</h4>
+        <div class="font-light">
+          <h5 class="">Make it satisfying</h5>
+          <hr class="bg-gray-800 border-gray-800">
+          <h6>Enjoy achieving your goals</h6>
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-auto m-4 p-4 w-full lg:w-1/2 text-gray-light">
+      <div class="border-2 border-family rounded-xl px-2 py-4">
+        <ion-icon name="repeat-outline" class="text-6xl text-white"></ion-icon>
+        <h4 class="text-3xl font-bold">Repeat the cycle</h4>
+
+      </div>
+    </div>
+</div>
+
+
+
+{{-- End of Mobile view --}}
+  <div class="flex-wrap mb-4 items-center hidden xl:flex">
 
     <div class="mx-auto m-4 p-4 w-1/2">
       <div class="border-3 text-white border-family rounded-xl px-2 py-4">

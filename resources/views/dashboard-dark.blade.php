@@ -14,7 +14,7 @@
           {{-- <a href="{{ Carbon\Carbon::parse($now)->addDays(-1)->toDateString()}}">
             <i class="fa fa-arrow-left text-4xl text-gray-light hover:text-white" aria-hidden="true"></i>
           </a> --}}
-            <h1 class="text-4xl text-gray-light font-extrabold tracking-wider">{{ Carbon\Carbon::parse($now)->format('l jS\\, F')}}</h1>
+            <h1 class="text-lg md:text-2xl xl:text-4xl text-gray-light font-extrabold tracking-wider">{{ Carbon\Carbon::parse($now)->format('l jS\\, F')}}</h1>
             {{-- <a href="{{ Carbon\Carbon::parse($now)->addDays(+1)->toDateString()}}">
               <i class="fa fa-arrow-right text-4xl text-gray-light hover:text-white" aria-hidden="true"></i>
             </a> --}}
@@ -22,7 +22,7 @@
         </div>
         <div class="text-gray-light py-2 text-left">
             <div class="flex flex-col text-left items-start">
-                <div class="bg-green-main text-gray-light shadow-xl text-center flex items-center px-4 h-20 w-20 rounded-lg">
+                <div class="bg-green-main text-gray-light shadow-xl text-center flex items-center px-4 h-12 lg:h-15  xl:h-20 w-12 lg:2-15  xl:w-20 rounded-lg">
                     <a class="button w-full h-full flex items-center justify-center" href="#add-habit-modal" rel="modal:open"><i class="fas fa-plus fa-3x   "></i></a></div>  
 </div>
 
@@ -33,7 +33,7 @@
     @if ($daily_percent > 0)
     <div class="mt-8 mb-16">
         <div class=" w-full bg-gray-bg ">
-            <div class="text-xl bg-gray-light font-extrabold py-5 text-xs  leading-none text-center text-gray-bg text-4xl shadow-2xl flex justify-end h-24 flex items-center rounded-lg"
+            <div class="text-xl bg-gray-light font-extrabold py-5   leading-none text-center text-gray-bg text-lg lg:text-2xl xl:text-4xl shadow-2xl flex justify-end h-15 lg:h-20 xl:h-24 flex items-center rounded-lg"
                 style="width: {{ $daily_percent }}%">{{ $daily_percent }}% &nbsp;</div>
         </div>
         
@@ -288,7 +288,7 @@
     <div class="content w-full">
       
         <div class="w-full py-3 pb-6">
-            <div class="">
+            <div class="flex flex-col overflow-y-hidden align-items-center justify-left">
                 <table class="table w-full flex justify-between">
                     <thead id="calendar-body">
                         {{-- <h1 class="table-heading-top flex inline-flex px-2 mb-1">نوشیدن ۳ لیوان آب</h1> --}}
@@ -297,24 +297,13 @@
 
 
                 <div class="flex flex-row justify-between w-full mb-6">
-                    <div class="text-gray-400  text-4xl font-bold"><a href="{{ Carbon\Carbon::parse($now)->addMonthsNoOverflow(-1)->toDateString()}}"> {{ Carbon\Carbon::parse($now)->addMonthsNoOverflow(-1)->format(' F')}}</a> </div>
-                    <div class="text-gray-light font-extrabold text-4xl"><a href="{{ Carbon\Carbon::parse($now)->toDateString()}}"> {{ Carbon\Carbon::parse($now)->format(' F')}} </a></div>
-                    <div class="text-gray-400  text-4xl font-bold"><a href="{{ Carbon\Carbon::parse($now)->addMonthsNoOverflow(+1)->toDateString()}}"> {{ Carbon\Carbon::parse($now)->addMonthsNoOverflow(+1)->format(' F')}}</a> </div>
+                    <div class="text-gray-400 text-lg lg:text-2xl xl:text-4xl font-bold"><a href="{{ Carbon\Carbon::parse($now)->addMonthsNoOverflow(-1)->toDateString()}}"> {{ Carbon\Carbon::parse($now)->addMonthsNoOverflow(-1)->format(' F')}}</a> </div>
+                    <div class="text-gray-light font-extrabold text-lg lg:text-2xl xl:text-4xl"><a href="{{ Carbon\Carbon::parse($now)->toDateString()}}"> {{ Carbon\Carbon::parse($now)->format(' F')}} </a></div>
+                    <div class="text-gray-400  text-lg lg:text-2xl xl:text-4xl font-bold"><a href="{{ Carbon\Carbon::parse($now)->addMonthsNoOverflow(+1)->toDateString()}}"> {{ Carbon\Carbon::parse($now)->addMonthsNoOverflow(+1)->format(' F')}}</a> </div>
 
 
                 </div>
-{{-- <div class="flex flex-row my-12">
-    <div class="w-1/2">&nbsp;</div>
-    @if ( $daily_percent > 0)
-    <div class=" flex  w-1/2 text-gray-light text-center h-32  items-center border-l border-white">
-        <div class=" w-full  rounded-full">
-            <div class="bg-green-main text-xs leading-none text-center text-gray-light h-20 flex items-center shadow h-24 flex items-center"
-                style="width: {{ $daily_percent }}%"><p class="mx-auto text-xl"><span class=" text-3xl font-extrabold">{{ $daily_percent }}%</span> Progress</p></div>
-        </div>
-</div>        
-    @endif
 
-</div> --}}
             </div>
                     </thead>
                     <tr class="">
@@ -329,7 +318,7 @@
                     </tr>
                     @foreach ($projects as $project)
                     <tr class="">
-                        <th class="h-2 md:h-4 lg:h-6 xl:h-8 w-2 md:w-4 lg:w-6 xl:w-8 text-right text-gray-light truncate font-xs sm:font-sm md:font-normal lg:pr-4 text-justify">{{mb_strimwidth($project->title, 0, 15, "...") }}   </th>
+                        <th class="h-2 md:h-4 lg:h-6 xl:h-8 w-2 md:w-4 lg:w-6 xl:w-8 text-right text-gray-light truncate text-xs sm:tetxt-sm md:text-normal lg:text-lg xl:text-xl lg:pr-4 text-justify">{{mb_strimwidth($project->title, 0, 15, "...") }}   </th>
                         @foreach ($period as $day)
                             @if ( count($project->done_on_days($day)->get()) )
                             <td class="h-2 md:h-4 lg:h-6 xl:h-8 w-2 md:w-4 lg:w-6 xl:w-8 {{$project->color}}-color"></td>
@@ -370,11 +359,11 @@
     </div> --}}
   </div>
     </div>
-    <ul class="text-gray-700 text-center flex mt-3 flex-wrap " id="myUL">
+    <ul class="text-gray-700 text-center flex mt-3 flex-wrap justify-around lg:justify-start " id="myUL">
 
       @foreach ($projects as $key => $project)
 
-      <li id="myLI" class=" li bg-{{ $project->color }}  mx-1 text-white p-1 rounded-lg h-24 w-24 flex items-center justify-center mb-2" >
+      <li id="myLI" class=" li bg-{{ $project->color }}  mx-1 text-white p-1 rounded-lg h-20 w-20 xl:h-24 xl:w-24 flex items-center justify-center mb-2" >
         <a href="#edit-habit-{{ $key }}" data-toggle="modal"  rel="modal:open" >
 
         <div class="text-center flex flex-row block w-full content-between justify-center items-center">
@@ -400,7 +389,7 @@
         <!-- Add margin if you want to see some of the overlay behind the modal-->
         <div class=" py-4 text-left px-6">
 
-          <h1 class="text-center text-5xl my-4 font-bold text-gray-800 tracking-wider font-extrabold">Edit habit</h1>
+          <h1 class="text-center text-2xl md:text-3xl lg:text-4xl xl:text-5xl my-4 font-bold text-gray-800 tracking-wider font-extrabold">Edit habit</h1>
     
           <form action="/projects/{{ $project->id }}" method="POST">
             <input type="hidden" name="_method" value="PUT">

@@ -2,7 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=3.0, minimum-scale=0.86">
+
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -65,7 +66,7 @@
     <div class="">
 
     <!-- Add margin if you want to see some of the overlay behind the modal-->
-      <div class="modal-content py-4 text-left px-6">
+      <div class="modal-content py-4 text-left px-2 md:px-3 lg:px-4 xl:px-6">
           <div class="flex flex-col">
             <div class="flex flex-row justify-between items-center mb-6">
               <img src="{{gravatar_url(auth()->user()->email)}}" id="profile" class="rounded-xl w-1/4" alt=""></a>
@@ -116,9 +117,9 @@
 
 
   <!-- Add margin if you want to see some of the overlay behind the modal-->
-    <div class="modal-content py-4 text-left px-6">
+    <div class="modal-content py-4 text-left px-2 lg:px-4 xl:px-6">
 
-      <h1 class="text-center text-5xl my-4 font-bold text-gray-800 tracking-wider font-extrabold">Add New habit</h1>
+      <h1 class="text-center text-2xl md:text-3xl lg:text-4xl xl:text-5xl my-4 font-bold text-gray-800 tracking-wider font-extrabold">Add New habit</h1>
 
 
       <form action=" {!! route('projects.store') !!}" method="POST" autocomplete="off">
@@ -180,11 +181,11 @@
           </div>
         </div>
         <footer class="flex justify-around">
-          <button type="submit" class="button rounded-lg bg-gray-bg p-4 p-4 text-orange-500 text-2xl w-2/5 hover:shadow-xl font-extrabold hover:bg-gray-light">Add</button>
+          <button type="submit" class="button rounded-lg bg-gray-bg p-1 lg:p2 xl:p-4 text-orange-500 text-lg lg-:text-xl xl:text-2xl w-2/5 hover:shadow-xl font-extrabold hover:bg-gray-light">Add</button>
   
           <a
           rel="modal:close"
-            class="button rounded-lg border-3 border-gray-bg bg-transparent p-4 text-center text-2xl w-2/5 hover:shadow-xl font-extrabold hover:bg-gray-light"
+            class="button rounded-lg border-3 border-gray-bg bg-transparent p-1 lg:p2 xl:p-4 text-center text-lg lg-:text-xl xl:text-2xl w-2/5 hover:shadow-xl font-extrabold hover:bg-gray-light"
           >Cancel</a>
         </footer>
       </form>
@@ -220,7 +221,7 @@
 </nav>
 <new-project-modal></new-project-modal>
 
-        <main class="py-4 container mx-auto pt-20">
+        <main class="py-4 container mx-auto pt-20 px-1">
             @yield('content')
         </main>
     </div>
