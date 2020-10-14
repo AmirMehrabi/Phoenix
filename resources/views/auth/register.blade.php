@@ -9,7 +9,7 @@
             <div class="w-full mx-auto">
             <h2 class="text-3xl text-white font-light mb-6">Start making good habits</h2>
         
-            <div class="w-1/3 mx-auto m-4 p-4 bg-white">
+            <div class="w-full md:w-2/3 lg:w-1/3 mx-auto m-4 p-4 bg-white">
                 <form method="POST" action="{{ route('register') }}" class="">
                     @csrf
                     @if(!empty($errors))

@@ -6,7 +6,7 @@
         <div class="w-full mx-auto">
         <h2 class="text-3xl text-white font-light my-6">Log-in</h2>
     
-        <div class="w-1/3 mx-auto">
+        <div class="w-full md:w-2/3 lg:w-1/3 mx-auto">
 
             <form method="POST" action="{{ route('login') }}" class="m-4 p-4 bg-white">
                 @csrf

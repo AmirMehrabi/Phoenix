@@ -416,11 +416,11 @@
                 <div class="mb-4">
                   <select name="color" id="colorpicker" autocomplete="off" class="border-b-4 text-gray-700 focus:text-gray-700 border-gray-bg p-2 text-sm bg-transparent text-white block w-full rounded text-lg focus:outline-none focus:shadow-lg" >
       
-                    <option class="bg-spiritual" value="spiritual">Spiritual</option>
-                    <option value="physical">physical</option>
-                    <option value="emotional">emotional</option>
-                    <option value="mental">mental</option>
-                    <option value="work">work</option>
+                    <option class="bg-spiritual" value="spiritual" {{ $project->color == 'spiritual' ? 'selected' : '' }}>Spiritual</option>
+                    <option value="physical" {{ $project->color == 'physical' ? 'selected' : '' }}>physical</option>
+                    <option value="emotional" {{ $project->color == 'emotional' ? 'selected' : '' }}>emotional</option>
+                    <option value="mental" {{ $project->color == 'mental' ? 'selected' : '' }}>mental</option>
+                    <option value="work" {{ $project->color == 'work' ? 'selected' : '' }}>work</option>
                     {{-- <option value="family">family</option>
                     <option value="friends">friends</option> --}}
                   </select>

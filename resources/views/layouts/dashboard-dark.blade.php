@@ -74,8 +74,8 @@
             </div>
           </div>
 
-          <div class="flex flex-row justify-between">
-            <div class="habit-card habit-box text-white flex flex-col justify-center  mh-30 flex-none px-2 items-center content-between rounded-2xl my-2 text-center bg-spiritual border-spiritual">
+          <div class="flex flex-col lg:flex-row justify-between">
+            <div class="habit-card lg:w-1/4 mx-1 text-white flex flex-col justify-center  mh-30 flex-none px-2 items-center content-between rounded-2xl my-2 text-center bg-spiritual border-spiritual">
               <div>
                 <h2 class="text-3xl font-extrabold">N/A</h2>
               </div>
@@ -84,7 +84,7 @@
               </div>
             </div>
 
-            <div class="habit-card habit-box text-white flex flex-col justify-center w-30 mh-30 flex-none px-2 items-center content-between rounded-2xl my-2 text-center bg-family border-family">
+            <div class="habit-card lg:w-1/4 mx-1 text-white flex flex-col justify-center w-30 mh-30 flex-none px-2 items-center content-between rounded-2xl my-2 text-center bg-family border-family">
               <div>
                 <h2 class="text-3xl font-extrabold">{{ count(Auth::user()->projects()->get()) }}</h2>
               </div>
@@ -93,7 +93,7 @@
               </div>
             </div>
 
-            <div class="habit-card habit-box text-white flex flex-col justify-center w-30 mh-30 flex-none px-2 items-center content-between rounded-2xl my-2 text-center bg-physical border-physical">
+            <div class="habit-card lg:w-1/4 mx-1 text-white flex flex-col justify-center w-30 mh-30 flex-none px-2 items-center content-between rounded-2xl my-2 text-center bg-physical border-physical">
               <div>
                 <h2 class="text-3xl font-extrabold">{{ Carbon\Carbon::parse(Auth::user()->created_at)->diffInDays() }}</h2>
               </div>
